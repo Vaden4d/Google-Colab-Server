@@ -12,3 +12,5 @@ echo "LD_LIBRARY_PATH=/usr/lib64-nvidia" >> /root/.bashrc && echo "export LD_LIB
 mkdir /root/.ssh
 #read -p "run 'ssh-keygen' on your local pc and \ncopy paste the content of ~/.ssh/id_rsa.pub file" rsa # for example https://imgur.com/a/z62timq
 echo $rsa >> /root/.ssh/authorized_keys
+curl -s http://localhost:4040/api/tunnels | python3 -c \
+    "import sys, json; print('Port=' + json.load(sys.stdin)['tunnels'][0]['public_url'][-5:])"
